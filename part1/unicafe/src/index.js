@@ -15,7 +15,12 @@ const Button = ({ onClick, text }) => (
 
 const Statistic = ({text, value}) => {
   return (
-    <p> {text} {value}</p>
+    <>
+      <tr>
+        <td>{text}</td>
+        <td>{value}</td>
+      </tr>
+    </>
   )
 }
 
@@ -37,8 +42,8 @@ const Statistics = (props) => {
   if (props.total > 0) {
     const stats = {
       all: props.total,
-      average: (props.feedbacks.good - props.feedbacks.bad) / props.total,
-      positive: ((props.feedbacks.good) / props.total * 100) + ' %'
+      average: ((props.feedbacks.good - props.feedbacks.bad) / props.total).toFixed(2),
+      positive: ((props.feedbacks.good) / props.total * 100).toFixed(2) + ' %'
     }
     /*
     return (
@@ -51,13 +56,17 @@ const Statistics = (props) => {
     */
     return (
       <>
-      <Header text="statistics" />
-        <Statistic text="good" value={props.feedbacks.good} />
-        <Statistic text="neutral" value={props.feedbacks.neutral} />
-        <Statistic text="bad" value={props.feedbacks.bad} />
-        <Statistic text="all" value={stats.all} />
-        <Statistic text="average" value={stats.average} />
-        <Statistic text="positive" value={stats.positive} />
+        <Header text="statistics" />
+        <table>
+          <tbody>
+            <Statistic text="good" value={props.feedbacks.good} />
+            <Statistic text="neutral" value={props.feedbacks.neutral} />
+            <Statistic text="bad" value={props.feedbacks.bad} />
+            <Statistic text="all" value={stats.all} />
+            <Statistic text="average" value={stats.average} />
+            <Statistic text="positive" value={stats.positive} />
+          </tbody>
+        </table>
       </>
     )
   }
