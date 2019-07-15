@@ -30,7 +30,7 @@ const Statistics = (props) => {
     const stats = {
       all: props.total,
       average: (props.feedbacks.good - props.feedbacks.bad) / props.total,
-      positive: (props.feedbacks.good) / props.total * 100
+      positive: ((props.feedbacks.good) / props.total * 100) + ' %'
     }
     return (
       <>
@@ -41,7 +41,12 @@ const Statistics = (props) => {
     )
   }
 
-  return <></>
+  return (
+    <>
+      <Header text="statistics" />
+      <p>No feedback give</p>
+    </>
+  )
 }
 
 const App = () => {
