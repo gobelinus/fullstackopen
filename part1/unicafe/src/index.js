@@ -13,6 +13,13 @@ const Button = ({ onClick, text }) => (
   </button>
 )
 
+const Statistic = ({text, value}) => {
+  return (
+    <p> {text} {value}</p>
+  )
+}
+
+/*
 const Stats = (props) => {
   return (
     Object.keys(props.stats).map(stat => {
@@ -24,6 +31,7 @@ const Stats = (props) => {
     })
   )
 }
+*/
 
 const Statistics = (props) => {
   if (props.total > 0) {
@@ -32,6 +40,7 @@ const Statistics = (props) => {
       average: (props.feedbacks.good - props.feedbacks.bad) / props.total,
       positive: ((props.feedbacks.good) / props.total * 100) + ' %'
     }
+    /*
     return (
       <>
         <Header text="statistics" />
@@ -39,12 +48,24 @@ const Statistics = (props) => {
         <Stats stats={stats} />
       </>
     )
+    */
+    return (
+      <>
+      <Header text="statistics" />
+        <Statistic text="good" value={props.feedbacks.good} />
+        <Statistic text="neutral" value={props.feedbacks.neutral} />
+        <Statistic text="bad" value={props.feedbacks.bad} />
+        <Statistic text="all" value={stats.all} />
+        <Statistic text="average" value={stats.average} />
+        <Statistic text="positive" value={stats.positive} />
+      </>
+    )
   }
 
   return (
     <>
       <Header text="statistics" />
-      <p>No feedback give</p>
+      <p>No feedback given</p>
     </>
   )
 }
