@@ -15,10 +15,10 @@ const Button = ({ onClick, text }) => (
 
 const Stats = (props) => {
   return (
-    Object.keys(props.feedbacks).map(feedback => {
+    Object.keys(props.stats).map(stat => {
       return (
-        <p key={feedback.toString()}>
-          {feedback} {props.feedbacks[feedback]}
+        <p key={stat.toString()}>
+          {stat} {props.stats[stat]}
         </p>
       )
     })
@@ -27,10 +27,16 @@ const Stats = (props) => {
 
 const Statistics = (props) => {
   if (props.total > 0) {
+    const stats = {
+      all: props.total,
+      average: (props.feedbacks.good - props.feedbacks.bad) / props.total,
+      positive: (props.feedbacks.good) / props.total * 100
+    }
     return (
       <>
         <Header text="statistics" />
-        <Stats feedbacks={props.feedbacks} />
+        <Stats stats={props.feedbacks} />
+        <Stats stats={stats} />
       </>
     )
   }
