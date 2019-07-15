@@ -11,10 +11,16 @@ const anecdotes = [
 ]
 
 const App = (props) => {
+  const points = new Array(anecdotes.length).fill(0)
+
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState([...points])
 
   const getNextAnecdotes = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length))
+    const newVotes = [...votes]
+    newVotes[selected] += 1
+    setVotes([...newVotes])
   }
 
   return (
@@ -22,6 +28,7 @@ const App = (props) => {
         <div>
           {props.anecdotes[selected]}
         </div>
+        <p>has {votes[selected]} votes</p>
         <button onClick={getNextAnecdotes}>next anecdote</button>
     </>
   )
