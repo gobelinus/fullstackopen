@@ -16,10 +16,28 @@ const Header = (props) => {
   )
 }
 
+const TopAnecdote = (props) => {
+  if (props.mostVoted > -1) {
+    return (
+      <>
+        <Header text="Anecdote with most votes" />
+        <div>
+          {props.anecdotes[props.mostVoted]}
+        </div>
+        <p>has {props.votes[props.mostVoted]} votes</p>
+      </>
+    )
+  }
+  return (
+    <>
+    </>
+  )
+}
 const App = (props) => {
   const points = new Array(anecdotes.length).fill(0)
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState([...points])
+  const [mostVoted, setMostVoted] = useState(-1)
 
   const getNextAnecdotes = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length))
@@ -30,6 +48,7 @@ const App = (props) => {
       const newVotes = [...currentVotes]
       newVotes[selected] += 1
       setVotes([...newVotes])
+      setMostVoted(newVotes.indexOf(Math.max(...newVotes)))
     }
 
   }
@@ -44,6 +63,7 @@ const App = (props) => {
       <button onClick={updateVotes(selected, votes)}>vote</button>
       <button onClick={getNextAnecdotes}>next anecdote</button>
 
+      <TopAnecdote mostVoted={mostVoted} anecdotes={anecdotes} votes={votes} />
     </>
   )
 }
