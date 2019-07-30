@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from './Header'
+import SubHeader from './SubHeader'
 import Content from './Content'
 
 const Course = ({ course }) => {
   return (
     <>
-      <Header course={course.name} />
+      <SubHeader course={course.name} />
       <Content parts={course.parts} />
     </>
   )
