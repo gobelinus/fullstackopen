@@ -1,8 +1,7 @@
 import React from 'react'
 
 const Total = ({parts}) => {
-  let total = 0
-  parts.forEach(value => total += value.exercises)
+  const total = parts.reduce((sum, value) => sum + value.exercises, 0)
   return (
     <p><strong>total of {total} exercises</strong></p>
   )
