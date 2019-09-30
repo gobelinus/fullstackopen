@@ -11,7 +11,7 @@ const Parts = (props) => {
   return (
     props.parts.map(prop => {
       return (
-        <p>
+        <p key={prop.name}>
           {prop.name} {prop.exercises}
         </p>
       )
