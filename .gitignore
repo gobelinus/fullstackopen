@@ -86,8 +86,13 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
+# environment variables file
 .env
+.in
+.out
 
 # next.js build output
 .next
+
+# local work in progress 
+wip
